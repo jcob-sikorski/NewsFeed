@@ -50,7 +50,6 @@ class MyKeysAndAccessTokens():
     def getAccessTokenSecret(self):
         return self.keys_and_access_tokens['access_token_secret']
 
-
 secrets = MyKeysAndAccessTokens(
     consumer_key = 'y0rlFXwfrwrDSHkqpGLoLyHhR', 
     consumer_secret = 'G6PifvEauIRCpEbnaVYakXGBbClreoHTlkozotsuFCawbN1bve', 
