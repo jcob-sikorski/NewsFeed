@@ -19,7 +19,6 @@ from datetime import date
 # to check if file exists
 import os
 
-
 my_secrets = MySecrets.secrets
 
 # path to tweets
@@ -29,20 +28,6 @@ dir_path = r'C:\Users\jmsie\Dev\Projects\NewsFeed\data'
 auth = tweepy.OAuthHandler(my_secrets.getConsumerKey(), my_secrets.getConsumerSecret())
 auth.set_access_token(my_secrets.getAccessToken(), my_secrets.getAccessTokenSecret())
 api = tweepy.API(auth, wait_on_rate_limit=True)
-
-
-def saveJson(file_name, file_content):
-    '''Saves data on json file.
-    
-    file_name: the file name of the data
-
-    file_content: the data you want to save
-    '''
-
-    # write to JSON
-    with open(file_name, 'w', encoding="utf-8") as f:
-        #json.dumps(file_content, indent=4, sort_keys=True, default=str)
-        json.dump(file_content, f, ensure_ascii=False, indent=4)
 
 
 def handleTwitterAPIRateLimit(cursor, list_name):
@@ -62,6 +47,24 @@ def handleTwitterAPIRateLimit(cursor, list_name):
         # Catch any other exceptions
         except Exception as e:
             print(e)
+
+def saveJson(file_name, file_content):
+    '''Saves data on json file.
+    
+    file_name: the file name of the data
+    file_content: the data you want to save
+    '''
+
+    # write to JSON
+    with open(file_name, 'w', encoding="utf-8") as f:
+        json.dump(file_content, f, ensure_ascii=False, indent=4)
+
+
+def loadJson(file_name):
+    with open(file_name) as json_file:
+        data = json.load(json_file)
+    return data
+
 
 def getAllTweets(screen_name, count=200, return_tweets=False, update_json=False):
     '''Gets all tweets of a specified user.'''
@@ -119,24 +122,12 @@ def getAllTweets(screen_name, count=200, return_tweets=False, update_json=False)
         'favorite_count': str(tweet.favorite_count)
         }
 
-    #tweets_json = {
-    #    tweet.id_str:   {
-    #    'created_at':     tweet.created_at,
-    #    'text':           tweet.text, 
-    #    'favorite_count': tweet.favorite_count
-    #}
-    #for tweet in all_tweepy_tweets}
-
     if update_json:
         # write in CSV
         full_path = ''.join(dir_path + f'\{screen_name}_tweets.json')
 
         saveJson(full_path, tweets_json)
         print('json_saved')
-        #with open(full_path, 'w',encoding="utf-8") as f:
-        #    writer = csv.writer(f)
-        #    writer.writerow(["id", "created_at" ,"text" ,"likes" ,"in reply to" ,"retweeted"])
-        #    writer.writerows(tweets_json)
 
         print('Data downloaded successfuly.')
     
@@ -165,12 +156,6 @@ def loadAllTweets(filename):
     return data
 
 
-def loadFollowing(filename):
-    with open(filename) as f:
-        data = json.load(f)
-    return data
-
-
 def isEmptyFile(filename):
     filesize = os.path.getsize(filename)
 
@@ -183,7 +168,7 @@ def isEmptyFile(filename):
 getFollowing('jcob_sikorski', update_json=True)
 
 # load json data
-following = loadFollowing('following_data.json')
+following = loadJson('following_data.json')
 
 # if last update wasn't today synch data
 #if str(date.today) == following['last_update']:
@@ -193,10 +178,5 @@ for screen_name in following['following']:
 
     #open(path, 'w').close()
     getAllTweets(screen_name=screen_name, count=100, update_json=True)
-
-#tweets = getAllTweets(screen_name='jcob_sikorski', return_tweets=True)
-#print(tweets)
-
-
 
 print('done')
