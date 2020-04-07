@@ -51,8 +51,8 @@ class MyKeysAndAccessTokens():
         return self.keys_and_access_tokens['access_token_secret']
 
 secrets = MyKeysAndAccessTokens(
-    consumer_key = 'y0rlFXwfrwrDSHkqpGLoLyHhR', 
-    consumer_secret = 'G6PifvEauIRCpEbnaVYakXGBbClreoHTlkozotsuFCawbN1bve', 
-    access_token = '1035449144473788416-isEeloffxjNnRDb3BqBx2flYlmtSmI', 
-    access_token_secret = 'PK9vXQ2IEbPISxPqPuLPY6PFMo8WuAjvPncHgwIAF64GY'
+    consumer_key = , 
+    consumer_secret = , 
+    access_token = , 
+    access_token_secret = 
     )
