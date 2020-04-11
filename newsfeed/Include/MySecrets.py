@@ -51,9 +51,10 @@ class MyKeysAndAccessTokens():
     def getAccessTokenSecret(self):
         return self.keys_and_access_tokens['access_token_secret']
 
+   # set your secret tokens and secret keys there
 secrets = MyKeysAndAccessTokens(
-    consumer_key = 'y0rlFXwfrwrDSHkqpGLoLyHhR', 
-    consumer_secret = 'G6PifvEauIRCpEbnaVYakXGBbClreoHTlkozotsuFCawbN1bve', 
-    access_token = '1035449144473788416-6EqHHr48p1R1IxwguQFRLLwRTVbdbn', 
-    access_token_secret = '011MGkxIu2nZF7AtsQEEtXnGUY8j6pAEcgNNoMW42hVle'
+    consumer_key = #######, 
+    consumer_secret = ##########, 
+    access_token = ###########, 
+    access_token_secret = ###########3
     )
