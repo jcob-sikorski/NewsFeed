@@ -1,4 +1,9 @@
 def connectToTwitterAPI():
+    '''Connection to Twitter API using specified secret 
+    
+    keys and secret tokens in MySecrets.py file.
+    '''
+
     # Twitter API
     import tweepy
 
@@ -14,4 +19,5 @@ def connectToTwitterAPI():
     auth = tweepy.OAuthHandler(my_secrets.getConsumerKey(), my_secrets.getConsumerSecret())
     auth.set_access_token(my_secrets.getAccessToken(), my_secrets.getAccessTokenSecret())
     api = tweepy.API(auth, wait_on_rate_limit=True)
+    
     return api

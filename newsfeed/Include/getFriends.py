@@ -1,4 +1,11 @@
 def getFriends(api, screen_name=None, user_id=None, write_json=False):
+    '''Writes friends to json file of user 
+    
+    connected to Twitter API.
+    
+    '''
+
+
     # Twitter API
     import tweepy
     from jsonSave import jsonSave
@@ -16,5 +23,9 @@ def getFriends(api, screen_name=None, user_id=None, write_json=False):
             friends.append(user.screen_name)
 
     if write_json:
-        data = {'last_update': str(date.today()), 'friends':[i for i in friends]}
+        data = {
+            'last_update': str(date.today()), 
+            'friends':[i for i in friends]
+        }
+
         jsonSave(file_name='friends_data.json', file_content=data)

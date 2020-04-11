@@ -1,4 +1,11 @@
 def handleTwitterAPIRateLimit(cursor, list_name):
+    '''Hadles requests limit, but it hasn't been 
+    
+    necessary yet. So this func would be 
+    
+    probably removed in the future.'''
+
+
     # Twitter API
     import tweepy
 

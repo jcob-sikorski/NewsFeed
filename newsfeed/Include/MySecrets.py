@@ -1,4 +1,7 @@
 class MyKeysAndAccessTokens():
+    '''Stores secret keys and secret tokens. !!! Without encryption.'''
+
+
     def __init__(self, consumer_key=None, consumer_secret= None, access_token= None, access_token_secret= None):
         self.consumer_key       = consumer_key
         self.consumer_secret    = consumer_secret

@@ -1,9 +1,12 @@
 def getAllTweets(api, screen_name, count=200, write_json=False):
+    '''Gets x tweets from a specified user, 
+    
+    where x is parameter count.
+    '''
+
     # Twitter API
     import tweepy
     from jsonSave import jsonSave
-
-    '''Gets all tweets of a specified user.'''
 
     most_recent_tweets = []
 
@@ -18,10 +21,9 @@ def getAllTweets(api, screen_name, count=200, write_json=False):
     except tweepy.error.TweepError:
         print('\n----------The particular user has protected tweets.------------\n')
         if write_json:
-
             jsonSave(full_path, [])
-
             print(screen_name)
+
             return None
         
     # save most recent tweets
@@ -57,14 +59,11 @@ def getAllTweets(api, screen_name, count=200, write_json=False):
 
     for tweet in most_recent_tweets:
         tweets_json[tweet.id_str] = {
-            #'id':               str(tweet.id_str),
             'created_at':       str(tweet.created_at),
             'text':             str(tweet.text),
             'favorite_count':   str(tweet.favorite_count)
         }
 
     if write_json:
-
         jsonSave(full_path, tweets_json)
-
         print('Data downloaded successfuly.')

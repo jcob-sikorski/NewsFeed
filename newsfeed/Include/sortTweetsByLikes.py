@@ -1,4 +1,4 @@
-def sortTweetsByLikes(return_tweets=False):
+def sortTweetsByLikes():
     # codecs for better performance
     import json, codecs
     from jsonLoad import jsonLoad
@@ -24,11 +24,10 @@ def sortTweetsByLikes(return_tweets=False):
             ID: likes_count 
             for ID, likes_count in sorted(
                 likes.items(), key=lambda item: int(item[1]), reverse=True)
-                }.keys())
+                }.keys()
+                )
 
-        sorted_tweets_by_likes[screen_name] = {id: user_data[id] for id in sorted_IDs_by_likes}
+        sorted_tweets_by_likes[screen_name] = {tweet_id: user_data[tweet_id] for tweet_id in sorted_IDs_by_likes}
 
     with open('sorted_tweets_by_likes.json', 'wb') as f:
         json.dump(sorted_tweets_by_likes, codecs.getwriter('utf-8')(f), ensure_ascii=False)
-
-sortTweetsByLikes()
