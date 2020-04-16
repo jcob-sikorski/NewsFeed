@@ -1,5 +1,0 @@
-structuring your project
-https://docs.python-guide.org/writing/structure/
-
-testing your code
-https://docs.python-guide.org/writing/tests/
